@@ -1,0 +1,21 @@
+{
+    "name": "junker/influxdb-service-provider",
+    "description": "InfluxDb Service Provider for Silex",
+    "keywords": ["silex","influxdb","influx"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dmitry Kosenkov",
+            "email": "dk-junker@ya.ru"
+        }
+    ],
+    "require": {
+        "silex/silex": "1.*",
+        "influxdb/influxdb-php": "^1.14"
+    },
+    "autoload": {
+        "psr-0" : {
+            "Junker" : "src/"
+        }
+    }
+}
