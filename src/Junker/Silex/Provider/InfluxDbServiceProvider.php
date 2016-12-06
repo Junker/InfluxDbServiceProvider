@@ -4,6 +4,7 @@ namespace Junker\Silex\Provider;
 
 use Silex\Application;
 use Silex\ServiceProviderInterface;
+use InfluxDB;
 
 class InfluxDbServiceProvider implements ServiceProviderInterface
 {
