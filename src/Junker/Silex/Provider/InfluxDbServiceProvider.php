@@ -19,12 +19,13 @@ class InfluxDbServiceProvider implements ServiceProviderInterface
         });
 
         $app['influxdb.client'] = $app->share(function (Application $app) {
-            $client = InfluxDB\Client(
+            $client = new InfluxDB\Client(
                 isset($app['influxdb.host']) ? $app['influxdb.host'] : self::HOST,
                 isset($app['influxdb.port']) ? $app['influxdb.port'] : self::HTTP_PORT,
                 isset($app['influxdb.username']) ? $app['influxdb.username'] : '',
                 isset($app['influxdb.password']) ? $app['influxdb.password'] : '',
                 isset($app['influxdb.ssl']) ? $app['influxdb.ssl'] : false,
+                isset($app['influxdb.verifyssl']) ? $app['influxdb.verifyssl'] : false,
                 isset($app['influxdb.timeout']) ? $app['influxdb.timeout'] : 0
             );
 

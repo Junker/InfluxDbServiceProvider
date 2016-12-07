@@ -22,6 +22,7 @@ $app->register(new InfluxDbServiceProvider(), [
     'influxdb.username' => 'username', //optional
     'influxdb.password' => 'password' //optional
     'influxdb.ssl' => true, //optional. default: false
+    'influxdb.verifyssl' => true, //optional. default: false
     'influxdb.timeout' => 10, //optional. default: 0
     'influxdb.driver' => 'udp' //optional
 ]);
