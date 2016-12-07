@@ -16,11 +16,14 @@ The best way to install InfluxDbServiceProvider is to use a [Composer](https://g
 use Junker\Silex\Provider\InfluxDbServiceProvider;
 
 $app->register(new InfluxDbServiceProvider(), [
-    'influxdb.host' => 'localhost',
-    'influxdb.port' => 8086,
+    'influxdb.host' => 'localhost', //optional. default: localhost
+    'influxdb.port' => 8086, //optional. default: 8086 or 4444 for udp
     'influxdb.database' => 'stat',
-    'influxdb.username' => 'username',
-    'influxdb.password' => 'password'
+    'influxdb.username' => 'username', //optional
+    'influxdb.password' => 'password' //optional
+    'influxdb.ssl' => true, //optional. default: false
+    'influxdb.timeout' => 10, //optional. default: 0
+    'influxdb.driver' => 'udp' //optional
 ]);
 
 $app['influxdb']->query('select * from test_metric LIMIT 5');
