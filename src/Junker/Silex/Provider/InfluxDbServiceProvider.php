@@ -33,6 +33,8 @@ class InfluxDbServiceProvider implements ServiceProviderInterface
             {
                 $client->setDriver(new \InfluxDB\Driver\UDP($client->getHost(), isset($app['influxdb.port']) ? $app['influxdb.port'] : self::UDP_PORT));
             }
+
+            return $client;
         });
     }
 
