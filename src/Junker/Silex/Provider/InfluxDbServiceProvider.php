@@ -2,8 +2,8 @@
 
 namespace Junker\Silex\Provider;
 
-use Silex\Application;
-use Silex\ServiceProviderInterface;
+use Pimple\Container;
+use Pimple\ServiceProviderInterface;
 use InfluxDB;
 
 class InfluxDbServiceProvider implements ServiceProviderInterface
@@ -12,13 +12,13 @@ class InfluxDbServiceProvider implements ServiceProviderInterface
     const HTTP_PORT = 8086;
     const UDP_PORT = 4444;
 
-    public function register(Application $app)
+    public function register(Container $app)
     {
-        $app['influxdb'] = $app->share(function (Application $app) {
+        $app['influxdb'] = function ($app) {
             return $app['influxdb.client']->selectDB($app['influxdb.database']);
-        });
+        };
 
-        $app['influxdb.client'] = $app->share(function (Application $app) {
+        $app['influxdb.client'] = function ($app) {
             $client = new InfluxDB\Client(
                 isset($app['influxdb.host']) ? $app['influxdb.host'] : self::HOST,
                 isset($app['influxdb.port']) ? $app['influxdb.port'] : self::HTTP_PORT,
@@ -29,16 +29,11 @@ class InfluxDbServiceProvider implements ServiceProviderInterface
                 isset($app['influxdb.timeout']) ? $app['influxdb.timeout'] : 0
             );
 
-            if (isset($app['influxdb.driver']) && $app['influxdb.driver'] == 'udp')
-            {
+            if (isset($app['influxdb.driver']) && $app['influxdb.driver'] == 'udp') {
                 $client->setDriver(new \InfluxDB\Driver\UDP($client->getHost(), isset($app['influxdb.port']) ? $app['influxdb.port'] : self::UDP_PORT));
             }
 
             return $client;
-        });
-    }
-
-    public function boot(Application $app) {
-
+        };
     }
 }

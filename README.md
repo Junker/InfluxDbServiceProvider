@@ -2,13 +2,13 @@
 InfluxDb Service Provider for Silex
 
 ## Requirements
-- Silex 1.x
+- Silex 2.x
 - InfluxDB client library for PHP
 
 ##Installation
 The best way to install InfluxDbServiceProvider is to use a [Composer](https://getcomposer.org/download):
 
-    php composer.phar require junker/influxdb-service-provider
+    composer require junker/influxdb-service-provider
 
 ## Examples
 
